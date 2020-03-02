@@ -1,0 +1,220 @@
+{
+	"info": {
+		"_postman_id": "0b772ac4-ef74-43c4-be09-6596f4b3bb55",
+		"name": "Skytrack",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "авторизация",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "login",
+							"value": "dlistkov",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/v1/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"auth",
+						"login"
+					]
+				},
+				"description": "Авторизация пользователя. \n\n\nbody: {\n\tlogin,\n\tpassword\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "выход",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "login",
+							"value": "dlistkov",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/v1/auth/logout",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"auth",
+						"logout"
+					]
+				},
+				"description": "разлогирование пользователя"
+			},
+			"response": []
+		},
+		{
+			"name": "добавление товара в корзину",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "product_id",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "amount",
+							"value": "4",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/v1/store/cart",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"store",
+						"cart"
+					]
+				},
+				"description": "Добавление товара в корзину\n\nbody: {\n\tproduct_id: \"ID товара. Для удачного запроса передавать нужно ID активного товара.\", \n\tamount: \"Количество. По умолчанию 1.\" \n}"
+			},
+			"response": []
+		},
+		{
+			"name": "список добавленных товаров",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "0.0.0.0:8080/v1/store/cart",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"store",
+						"cart"
+					]
+				},
+				"description": "Возвращает список добавленных в корзину товаров"
+			},
+			"response": []
+		},
+		{
+			"name": "список товаров",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "0.0.0.0:8080/v1/store/product?shop_id=2",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"store",
+						"product"
+					],
+					"query": [
+						{
+							"key": "shop_id",
+							"value": "2"
+						}
+					]
+				},
+				"description": "Список активных товаров\n\nquery: { shop_id: \"Фильтр по ID магазина.\"}"
+			},
+			"response": []
+		},
+		{
+			"name": "профиль пользователя",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "0.0.0.0:8080/v1/user/profile",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"user",
+						"profile"
+					]
+				},
+				"description": "профиль пользователя"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

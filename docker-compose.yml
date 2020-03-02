@@ -1,0 +1,44 @@
+version: '3.2'
+
+services:
+  postgres:
+      build:
+        context: .
+        dockerfile: docker/postgres/Dockerfile
+      env_file: ./.env
+      volumes:
+        - ./docker/postgres/backup:/backup
+        - ${POSTGRES_PATH}:/var/lib/postgresql/data
+      ports:
+        - ${POSTGRES_PORT}:${POSTGRES_PORT}
+
+  app:
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
+    volumes:
+      - ./:/src
+    command: gunicorn app.api.app:app -b :8080 --worker-class aiohttp.GunicornWebWorker --reload --access-logfile -
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgres
+    links:
+      - postgres
+      - redis
+
+  redis:
+    build:
+      context: .
+      dockerfile: docker/redis/Dockerfile
+    env_file: ./.env
+    volumes:
+      - ${REDIS_PATH}:/data
+    ports:
+      - ${REDIS_PORT}:${REDIS_PORT}
+
+volumes:
+  pgdata:
+    driver: local
+  redisdata:
+    driver: local
